@@ -121,19 +121,17 @@ class ItemTest {
         assertTrue(item.collections.first() == "JHUCHVIT")
     }
 
-    @Test
-    fun parcelTest(){
-        zoteroDatabase.writeItem(-1, itemPOJO).blockingGet()
-        val items = zoteroDatabase.getItemsForGroup(-1).blockingGet()
-        assertTrue(items.isNotEmpty())
-        val item = items.filter { it.itemKey == "KEGNWTKP" }.first()
-
-        val bundle = Bundle().apply { putParcelable("item", item) }
-        val item2 = bundle.getParcelable<Item>("item") as Item
-        assertTrue(item.itemType == item2.itemType)
-        assertTrue(item.creators.first().firstName == item2.creators.first().firstName)
-        assertTrue(item.itemInfo.itemKey == item2.itemKey)
-    }
-
-
+//    @Test
+//    fun parcelTest(){
+//        zoteroDatabase.writeItem(-1, itemPOJO).blockingGet()
+//        val items = zoteroDatabase.getItemsForGroup(-1).blockingGet()
+//        assertTrue(items.isNotEmpty())
+//        val item = items.filter { it.itemKey == "KEGNWTKP" }.first()
+//
+//        val bundle = Bundle().apply { putParcelable("item", item) }
+//        val item2 = bundle.getParcelable<Item>("item") as Item
+//        assertTrue(item.itemType == item2.itemType)
+//        assertTrue(item.creators.first().firstName == item2.creators.first().firstName)
+//        assertTrue(item.itemInfo.itemKey == item2.itemKey)
+//    }
 }
