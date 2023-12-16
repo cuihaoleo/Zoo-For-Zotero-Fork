@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -17,9 +19,12 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       - name: Build Release APK
+        env:
+          ZOTERO_OAUTH_KEY: ${{secrets.ZOTERO_OAUTH_KEY}}
+          ZOTERO_OAUTH_SECRET: ${{secrets.ZOTERO_OAUTH_SECRET}}
         run: |
-          echo 'zotero_api_key=""' > apikeys.properties
-          echo 'zotero_api_secret=""' >> apikeys.properties
+          echo "zotero_api_key=\"$ZOTERO_OAUTH_KEY\"" > apikeys.properties
+          echo "zotero_api_secret=\"$ZOTERO_OAUTH_SECRET\"" >> apikeys.properties
           ./gradlew assembleRelease
       - name: Sign APK
         env:
@@ -30,9 +35,16 @@ jobs:
           PATH=$ANDROID_SDK_ROOT/build-tools/34.0.0:$PATH
           zipalign -p 4 app/build/outputs/apk/release/app-release-unsigned.apk app-release.apk
           apksigner sign --ks keystore.jks --ks-pass env:KEYSTORE_PASSWORD --ks-key-alias app app-release.apk
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
           path: app-release.apk
           if-no-files-found: error
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          prerelease: true
+          fail_on_unmatched_files: true
+          files: app-release.apk
