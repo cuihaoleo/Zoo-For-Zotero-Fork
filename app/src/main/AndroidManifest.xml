@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mickstarify.zooforzotero">
+    package="me.cvhc.zooforzotero">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".ZooForZoteroApplication"
+        android:name="me.cvhc.zooforzotero.ZooForZoteroApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/icon"
@@ -26,30 +26,30 @@
         android:usesCleartextTraffic="true"
         android:largeHeap="true">
         <activity
-            android:name=".AttachmentManager.AttachmentManager"
+            android:name="me.cvhc.zooforzotero.AttachmentManager.AttachmentManager"
             android:label="@string/title_activity_attachment_manager"
-            android:parentActivityName=".LibraryActivity.LibraryActivity"
+            android:parentActivityName="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mickstarify.zooforzotero.LibraryActivity.LibraryActivity" />
+                android:value="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity" />
         </activity>
         <activity
-            android:name=".LibraryActivity.WebDAV.WebDAVSetup"
+            android:name="me.cvhc.zooforzotero.LibraryActivity.WebDAV.WebDAVSetup"
             android:label="@string/title_activity_web_davsetup"
-            android:parentActivityName=".LibraryActivity.LibraryActivity"
+            android:parentActivityName="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mickstarify.zooforzotero.LibraryActivity.LibraryActivity" />
+                android:value="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="me.cvhc.zooforzotero.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".LibraryActivity.LibraryActivity">
+            android:parentActivityName="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mickstarify.zooforzotero.LibraryActivity.LibraryActivity" />
+                android:value="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity" />
         </activity>
 
         <uses-library
@@ -61,7 +61,7 @@
             android:value=".LibraryActivity.SearchResultsActivity" />
 
         <activity
-            android:name=".LibraryActivity.SearchResultsActivity"
+            android:name="me.cvhc.zooforzotero.LibraryActivity.SearchResultsActivity"
             android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>
@@ -73,7 +73,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".LibraryActivity.LibraryActivity"
+            android:name="me.cvhc.zooforzotero.LibraryActivity.LibraryActivity"
             android:label="@string/title_activity_library"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme"
@@ -83,21 +83,21 @@
                 android:resource="@xml/searchable" />
 
             <intent-filter>
-                <action android:name="com.mickstarify.zooforzotero.intent.action.LIBRARY_FILTER_INTENT" />
+                <action android:name="me.cvhc.zooforzotero.intent.action.LIBRARY_FILTER_INTENT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".SyncSetup.ZoteroAPISetup.ZoteroAPISetup"
+            android:name="me.cvhc.zooforzotero.SyncSetup.ZoteroAPISetup.ZoteroAPISetup"
             android:label="@string/title_activity_zotero_api_setup"
             android:launchMode="singleInstance"
-            android:parentActivityName=".SyncSetup.SyncSetupView"
+            android:parentActivityName="me.cvhc.zooforzotero.SyncSetup.SyncSetupView"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mickstarify.zooforzotero.SyncSetup.SyncSetupView" />
+                android:value="me.cvhc.zooforzotero.SyncSetup.SyncSetupView" />
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -111,10 +111,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SyncSetup.SyncSetupView"
+            android:name="me.cvhc.zooforzotero.SyncSetup.SyncSetupView"
             android:label="@string/title_activity_sync_setup"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"
+        <activity android:name="me.cvhc.zooforzotero.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -129,7 +129,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.mickstarify.zooforzotero.fileprovider.app"
+            android:authorities="me.cvhc.zooforzotero.fileprovider.app"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
